@@ -12,6 +12,13 @@ public:
 
 protected:
     void doStep();
+
+
+private:
+    int height;
+    int width;
+    int** map;
+    static const int STOP = 0, BACK = 1;
 };
 
 #endif //U5_LABROB_ROBOT_GASTONTARRY_H
