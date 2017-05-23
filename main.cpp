@@ -68,6 +68,7 @@ int main(int argc, char *argv[]) {
     // Wait for thread completion
     for(unsigned int i = 0; i < robots.size(); i++){
         threads.at(i).join();
+        robots.at(i)->printEndInfo();
     }
 
     // Clean up

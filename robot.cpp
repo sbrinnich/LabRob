@@ -19,11 +19,9 @@ Robot::~Robot(){}
 void Robot::startRobot() {
     while(!finished){
         doStep();
-        //std::cout << "Testy " << steps << ", " << coords.posx << ", " << coords.posy << std::endl;
         steps++;
         checkFinished();
     }
-    printEndInfo();
 }
 
 void Robot::printEndInfo() {
