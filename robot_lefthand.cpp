@@ -7,21 +7,31 @@ LeftHand::LeftHand(Maze *maze) : Robot("Left Hand", maze){}
 LeftHand::~LeftHand() {}
 
 void LeftHand::doStep() {
-    coordinates left = calculateNextPos(LEFT);
-    coordinates forward = calculateNextPos(FORWARD);
-    coordinates right = calculateNextPos(RIGHT);
-
-    if(maze->getPosition(left) == ' '){
+    // Go left if possible
+    coordinates c = calculateNextPos(LEFT);
+    if(maze->getPosition(c) == ' '){
         turn(LEFT);
-        coords = left;
-    }else if(maze->getPosition(forward) == ' '){
-        coords = forward;
-    }else if(maze->getPosition(right) == ' '){
-        turn(RIGHT);
-        coords = right;
-    }else{
-        turn(LEFT);
-        turn(LEFT);
-        coords = calculateNextPos(FORWARD);
+        coords = c;
+        return;
     }
+
+    // Go forward if possible
+    c = calculateNextPos(FORWARD);
+    if(maze->getPosition(c) == ' '){
+        coords = c;
+        return;
+    }
+
+    // Go right if possible
+    c = calculateNextPos(RIGHT);
+    if(maze->getPosition(c) == ' '){
+        turn(RIGHT);
+        coords = c;
+        return;
+    }
+
+    // Go back
+    turn(LEFT);
+    turn(LEFT);
+    coords = calculateNextPos(FORWARD);
 }
