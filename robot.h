@@ -28,6 +28,7 @@ public:
     void startRobot();
     void printEndInfo();
     virtual ~Robot();
+    std::string getName();
 
 };
 

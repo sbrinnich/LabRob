@@ -15,6 +15,8 @@ protected:
 
 private:
     std::vector< std::vector<int> > markings;
+    int getMinMarkingsDir();
+    bool isVisited();
 };
 
 #endif //U5_LABROB_ROBOT_TREMAUX_H
