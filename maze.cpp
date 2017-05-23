@@ -160,3 +160,11 @@ coordinates Maze::getStart() {
 coordinates Maze::getGoal() {
     return goal;
 }
+
+int Maze::getWidth() {
+    return lab.size();
+}
+
+int Maze::getHeight() {
+    return lab.at(0).size();
+}

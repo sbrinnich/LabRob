@@ -28,7 +28,8 @@ public:
     void printMaze();
     coordinates getStart();
     coordinates getGoal();
-
+    int getWidth();
+    int getHeight();
 
 };
 
