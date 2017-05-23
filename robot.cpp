@@ -104,6 +104,22 @@ coordinates Robot::calculateNextPos(int move_to) {
                     break;
             }
             break;
+        case BACKWARDS:
+            switch(dir){
+                case NORTH:
+                    c.posy++;
+                    break;
+                case EAST:
+                    c.posx--;
+                    break;
+                case SOUTH:
+                    c.posy--;
+                    break;
+                case WEST:
+                    c.posx++;
+                    break;
+            }
+            break;
     }
     return c;
 }
