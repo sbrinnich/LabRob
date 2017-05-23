@@ -2,7 +2,6 @@
 
 #include <fstream>
 #include <iostream>
-#include <string>
 #include "maze.h"
 
 Maze::Maze() {}
@@ -94,15 +93,49 @@ void Maze::defineStartAndGoal() {
 }
 
 char Maze::getPosition(int posx, int posy) {
-    return ' ';
+    return lab[posx][posy];
 }
 
-int Maze::isCrossing(int posx, int posy) {
-    return -1;
+bool Maze::isCrossing(int posx, int posy) {
+    int count_directions = 0;
+    if(lab[posx +1][posy] == ' '){
+        count_directions ++;
+    }
+    if(lab[posx][posy + 1] == ' '){
+        count_directions ++;
+    }
+    if(lab[posx --][posy] == ' '){
+        count_directions ++;
+    }
+    if(lab[posx][posy --] == ' '){
+        count_directions ++;
+    }
+    if(count_directions > 2){
+        return true;
+    }else{
+        return false;
+    }
 }
 
-int Maze::isDeadEnd(int posx, int posy) {
-    return -1;
+bool Maze::isDeadEnd(int posx, int posy) {
+    int count_directions = 0;
+    if(lab[posx +1][posy] != ' '){
+        count_directions ++;
+    }
+    if(lab[posx][posy + 1] != ' '){
+        count_directions ++;
+    }
+    if(lab[posx --][posy] != ' '){
+        count_directions ++;
+    }
+    if(lab[posx][posy --] != ' '){
+        count_directions ++;
+    }
+    if(count_directions == 1){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 void Maze::printMaze() {

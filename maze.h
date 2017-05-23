@@ -16,8 +16,8 @@ public:
     Maze();
     void readFromFile(std::string filename);
     char getPosition(int posx, int posy);
-    int isCrossing(int posx, int posy);
-    int isDeadEnd(int posx, int posy);
+    bool isCrossing(int posx, int posy);
+    bool isDeadEnd(int posx, int posy);
     void printMaze();
 
 
