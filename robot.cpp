@@ -2,7 +2,9 @@
 
 #include "robot.h"
 
-Robot::Robot(std::string name, Maze* maze) : name(name), maze(maze), steps(0), finished(0) {}
+Robot::Robot(std::string name, Maze* maze) : name(name), steps(0), finished(0), maze(maze) {}
+
+Robot::~Robot(){}
 
 void Robot::startRobot() {
     while(!finished){

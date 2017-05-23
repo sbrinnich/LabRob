@@ -8,6 +8,10 @@
 class GastonTarry : public Robot {
 public:
     GastonTarry(Maze* maze);
+    ~GastonTarry();
+
+protected:
+    void doStep();
 };
 
 #endif //U5_LABROB_ROBOT_GASTONTARRY_H
