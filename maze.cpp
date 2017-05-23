@@ -145,11 +145,14 @@ bool Maze::isDeadEnd(coordinates coords) {
 
 void Maze::printMaze() {
     for (unsigned int y = 0; y < lab.size(); ++y) {
-        for (unsigned int x = 0; x < lab[0].size(); ++x) {
-            std::cout << lab.at(x).at(y);
+        for (unsigned int x = 0; x < lab.at(0).size(); ++x) {
+            if(lab.at(x).at(y) == ' ') {
+                std::cout << " ";
+            }else{
+                std::cout << "#";
+            }
         }
         std::cout << std::endl;
-
     }
 }
 
