@@ -21,8 +21,10 @@ public:
     Maze();
     void readFromFile(std::string filename);
     char getPosition(coordinates coords);
-    int isCrossing(coordinates coords);
-    int isDeadEnd(coordinates coords);
+    bool isCrossing(coordinates coords);
+    bool isDeadEnd(coordinates coords);
+    void printMaze();
+
 
 };
 

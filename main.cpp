@@ -58,6 +58,7 @@ int main(int argc, char *argv[]) {
         // Show usage
         printUsageInfo();
     }else{
+        maze->printMaze();
         // Send robots through maze
         for(unsigned int i = 0; i < robots.size(); i++){
             threads.push_back(std::thread(&Robot::startRobot,robots.at(i)));
