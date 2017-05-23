@@ -124,16 +124,16 @@ bool Maze::isCrossing(coordinates coords) {
 
 bool Maze::isDeadEnd(coordinates coords) {
     int count_directions = 0;
-    if(lab[coords.posx +1][coords.posy] != ' '){
+    if(lab[coords.posx +1][coords.posy] == ' '){
         count_directions ++;
     }
-    if(lab[coords.posx][coords.posy + 1] != ' '){
+    if(lab[coords.posx][coords.posy + 1] == ' '){
         count_directions ++;
     }
-    if(lab[coords.posx -1][coords.posy] != ' '){
+    if(lab[coords.posx -1][coords.posy] == ' '){
         count_directions ++;
     }
-    if(lab[coords.posx][coords.posy -1] != ' '){
+    if(lab[coords.posx][coords.posy -1] == ' '){
         count_directions ++;
     }
     if(count_directions == 1){
