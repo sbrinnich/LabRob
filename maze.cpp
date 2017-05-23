@@ -28,3 +28,50 @@ void Maze::readFromFile(std::string filename) {
         }
     }
 }
+
+void Maze::defineStartAndGoal() {
+    bool check = false;
+    bool check_finish = false;
+    for (unsigned int i = 0; i < lab.size(); ++i) {
+        if(!check && lab[i][0] == ' '){
+            lab[i][0] = 's';
+            check = true;
+        }else if(check && lab[i][0] == ' '){
+            lab[i][0] = 'g';
+            check_finish = true;
+        }
+    }
+    if(check_finish){
+        for (unsigned int i = 0; i < lab[lab.size()].size(); ++i) {
+            if(!check && lab[lab.size()][i] == ' '){
+                lab[lab.size()][i] = 's';
+                check = true;
+            }else if(check && lab[lab.size()][i] == ' '){
+                lab[lab.size()][i] = 'g';
+                check_finish = true;
+            }
+        }
+    }
+    if(check_finish){
+        for (unsigned int i = 0; i < lab.size(); ++i) {
+            if(!check && lab[i][lab.size()] == ' '){
+                lab[i][lab.size()] = 's';
+                check = true;
+            }else if(check && lab[i][lab.size()] == ' '){
+                lab[i][lab.size()] = 'g';
+                check_finish = true;
+            }
+        }
+    }
+    if(check_finish){
+        for (unsigned int i = 0; i < lab[0].size(); ++i) {
+            if(!check && lab[0][i] == ' '){
+                lab[0][i] = 's';
+                check = true;
+            }else if(check && lab[0][i] == ' '){
+                lab[0][i] = 'g';
+            }
+        }
+    }
+
+}
