@@ -8,6 +8,10 @@
 class LeftHand : public Robot {
 public:
     LeftHand(Maze* maze);
+    ~LeftHand();
+
+protected:
+    void doStep();
 };
 
 #endif //U5_LABROB_ROBOT_LEFTHAND_H

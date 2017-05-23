@@ -8,6 +8,10 @@
 class Tremaux : public Robot{
 public:
     Tremaux(Maze* maze);
+    ~Tremaux();
+
+protected:
+    void doStep();
 };
 
 #endif //U5_LABROB_ROBOT_TREMAUX_H

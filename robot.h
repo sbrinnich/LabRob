@@ -9,22 +9,22 @@
 class Robot {
 
 private:
-    int steps;
     std::string name;
+    int steps;
     int finished;
     void checkFinished();
 
 protected:
+    Maze* maze;
     Robot(std::string name, Maze* maze);
     int posx, posy, dir;
     const int NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3;
     virtual void doStep()=0;
-    Maze* maze;
 
 public:
     void startRobot();
     void printEndInfo();
-
+    virtual ~Robot();
 
 };
 
