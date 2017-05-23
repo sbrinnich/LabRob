@@ -16,6 +16,8 @@ class Maze {
 private:
     std::vector< std::vector <char> > lab;
     void defineStartAndGoal();
+    coordinates start;
+    coordinates goal;
 
 public:
     Maze();
@@ -24,6 +26,8 @@ public:
     bool isCrossing(coordinates coords);
     bool isDeadEnd(coordinates coords);
     void printMaze();
+    coordinates getStart();
+    coordinates getGoal();
 
 
 };

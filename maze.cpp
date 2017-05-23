@@ -48,20 +48,24 @@ void Maze::defineStartAndGoal() {
     bool check_finish = false;
     for (unsigned int i = 0; i < x; ++i) {
         if(!check && lab.at(i).at(0) == ' '){
-            lab.at(i).at(0) = 's';
+            start.posx = i;
+            start.posy = 0;
             check = true;
         }else if(check && lab.at(i).at(0) == ' '){
-            lab.at(i).at(0) = 'g';
+            goal.posx = i;
+            goal.posy = 0;
             check_finish = true;
         }
     }
     if(!check_finish){
         for (unsigned int i = 0; i < y; ++i) {
             if(!check && lab.at(x-1).at(i) == ' '){
-                lab.at(x-1).at(i) = 's';
+                start.posx = x-1;
+                start.posy = i;
                 check = true;
             }else if(check && lab.at(x-1).at(i) == ' '){
-                lab.at(x-1).at(i) = 'g';
+                goal.posx = x-1;
+                goal.posy = i;
                 check_finish = true;
             }
         }
@@ -69,10 +73,12 @@ void Maze::defineStartAndGoal() {
     if(!check_finish){
         for (unsigned int i = 0; i < x; ++i) {
             if(!check && lab.at(i).at(y-1) == ' '){
-                lab.at(i).at(y-1) = 's';
+                start.posy = i;
+                start.posx = y-1;
                 check = true;
             }else if(check && lab.at(i).at(y-1) == ' '){
-                lab.at(i).at(y-1) = 'g';
+                goal.posx = i;
+                goal.posy = y-1;
                 check_finish = true;
             }
         }
@@ -80,10 +86,12 @@ void Maze::defineStartAndGoal() {
     if(!check_finish){
         for (unsigned int i = 0; i < y; ++i) {
             if(!check && lab.at(0).at(i) == ' '){
-                lab.at(0).at(i) = 's';
+                start.posx = 0;
+                start.posy = i;
                 check = true;
             }else if(check && lab.at(0).at(i) == ' '){
-                lab.at(0).at(i) = 'g';
+                goal.posx = 0;
+                goal.posy = i;
             }
         }
     }
@@ -143,4 +151,12 @@ void Maze::printMaze() {
         std::cout << std::endl;
 
     }
+}
+
+coordinates Maze::getStart() {
+    return start;
+}
+
+coordinates Maze::getGoal() {
+    return goal;
 }
