@@ -64,6 +64,11 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    // Wait for thread completion
+    for(unsigned int i = 0; i < robots.size(); i++){
+        threads.at(i).join();
+    }
+
     // Clean up
     for(unsigned int i = 0; i < robots.size(); i++){
         delete robots.at(i);

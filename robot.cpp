@@ -9,6 +9,7 @@ Robot::~Robot(){}
 void Robot::startRobot() {
     while(!finished){
         doStep();
+        steps++;
         checkFinished();
     }
     printEndInfo();
@@ -19,7 +20,7 @@ void Robot::printEndInfo() {
 }
 
 void Robot::checkFinished() {
-    if(maze->getPosition(posx, posy) == 'g'){
+    if(maze->getPosition(coords) == 'g'){
         finished = true;
     }
 }

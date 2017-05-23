@@ -6,6 +6,11 @@
 #include <iostream>
 #include <vector>
 
+struct coordinates{
+    int posx;
+    int posy;
+};
+
 class Maze {
 
 private:
@@ -15,9 +20,9 @@ private:
 public:
     Maze();
     void readFromFile(std::string filename);
-    char getPosition(int posx, int posy);
-    int isCrossing(int posx, int posy);
-    int isDeadEnd(int posx, int posy);
+    char getPosition(coordinates coords);
+    int isCrossing(coordinates coords);
+    int isDeadEnd(coordinates coords);
 
 };
 

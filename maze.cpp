@@ -30,15 +30,15 @@ void Maze::readFromFile(std::string filename) {
     }
 }
 
-char Maze::getPosition(int posx, int posy) {
+char Maze::getPosition(coordinates coords) {
     return ' ';
 }
 
-int Maze::isCrossing(int posx, int posy) {
+int Maze::isCrossing(coordinates coords) {
     return -1;
 }
 
-int Maze::isDeadEnd(int posx, int posy) {
+int Maze::isDeadEnd(coordinates coords) {
     return -1;
 }
 

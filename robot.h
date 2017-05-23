@@ -17,8 +17,9 @@ private:
 protected:
     Maze* maze;
     Robot(std::string name, Maze* maze);
-    int posx, posy, dir;
-    const int NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3;
+    int dir;
+    coordinates coords;
+    static const int NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3, LEFT = 4, RIGHT = 5, FORWARD = 6;
     virtual void doStep()=0;
 
 public:

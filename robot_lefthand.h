@@ -12,6 +12,10 @@ public:
 
 protected:
     void doStep();
+
+private:
+    coordinates calculateNextPos(int move_to);
+    void turn(int turn_dir);
 };
 
 #endif //U5_LABROB_ROBOT_LEFTHAND_H
