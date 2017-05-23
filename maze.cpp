@@ -107,7 +107,7 @@ bool Maze::isCrossing(int posx, int posy) {
     if(lab[posx --][posy] == ' '){
         count_directions ++;
     }
-    if(lab[posx][posy --] == ' '){
+    if(lab[posx][posy - 1] == ' '){
         count_directions ++;
     }
     if(count_directions > 2){
@@ -128,7 +128,7 @@ bool Maze::isDeadEnd(int posx, int posy) {
     if(lab[posx --][posy] != ' '){
         count_directions ++;
     }
-    if(lab[posx][posy --] != ' '){
+    if(lab[posx][posy - 1] != ' '){
         count_directions ++;
     }
     if(count_directions == 1){
