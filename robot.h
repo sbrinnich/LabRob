@@ -21,6 +21,8 @@ protected:
     coordinates coords;
     static const int NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3, LEFT = 4, RIGHT = 5, FORWARD = 6;
     virtual void doStep()=0;
+    coordinates calculateNextPos(int move_to);
+    void turn(int turn_dir);
 
 public:
     void startRobot();

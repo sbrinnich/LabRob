@@ -12,6 +12,9 @@ public:
 
 protected:
     void doStep();
+
+private:
+    std::vector< std::vector<int> > markings;
 };
 
 #endif //U5_LABROB_ROBOT_TREMAUX_H
