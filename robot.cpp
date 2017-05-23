@@ -15,9 +15,11 @@ void Robot::startRobot() {
 }
 
 void Robot::printEndInfo() {
-    std::cout << name << " found an exit to the maze in " << steps << " steps!" << std::endl;
+    std::cout << "Robot " << name << " found an exit to the maze in " << steps << " steps!" << std::endl;
 }
 
 void Robot::checkFinished() {
-
+    if(maze->getPosition(posx, posy) == 'g'){
+        finished = true;
+    }
 }
