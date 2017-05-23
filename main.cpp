@@ -10,11 +10,10 @@
 #include "robot_gastontarry.h"
 
 void printUsageInfo(){
-    std::cout << "Labrob Usage" << std::endl;
-    std::cout << "-----------------" << std::endl;
-    std::cout << "labrob filename_for_maze [optional_parameters]" << std::endl << std::endl;
+    std::cout << "Usage: labrob [filename_for_maze] [optional_parameters]" << std::endl << std::endl;
     std::cout << "Possible Parameters:" << std::endl;
     std::cout << "-h    print this help info" << std::endl;
+    std::cout << "-p    print maze before robots start search" << std::endl;
     std::cout << "-t1   send a Left Hand Robot through the maze" << std::endl;
     std::cout << "-t2   send a Tremaux Robot through the maze" << std::endl;
     std::cout << "-t3   send a Gaston Tarry Robot through the maze" << std::endl;
@@ -23,9 +22,11 @@ void printUsageInfo(){
 int main(int argc, char *argv[]) {
     std::vector<Robot*> robots;
     std::vector<std::thread> threads;
-    int onlyshowusage = 0;
+    bool onlyshowusage = false;
+    bool printMaze = false;
     if(argc <= 1){
         std::cout << "Not all necessary parameters specified!" << std::endl;
+        std::cout << std::endl;
         printUsageInfo();
         return -1;
     }
@@ -33,7 +34,9 @@ int main(int argc, char *argv[]) {
     // Check if file exists
     std::string filename = argv[1];
     if(!std::ifstream(filename)){
-        std::cout << "File does not exist or could not be read! Exiting..." << std::endl;
+        std::cout << "Specified file does not exist or could not be read!" << std::endl;
+        std::cout << std::endl;
+        printUsageInfo();
         return -1;
     }
 
@@ -50,7 +53,14 @@ int main(int argc, char *argv[]) {
         }else if(strcmp(argv[i], "-t3") == 0) {
             robots.push_back(new GastonTarry(maze));
         }else if(strcmp(argv[i], "-h") == 0) {
-            onlyshowusage = 1;
+            onlyshowusage = true;
+        }else if(strcmp(argv[i], "-p") == 0) {
+            printMaze = true;
+        }else{
+            std::cout << "Invalid parameters specified!" << std::endl;
+            std::cout << std::endl;
+            printUsageInfo();
+            return -1;
         }
     }
 
@@ -58,10 +68,14 @@ int main(int argc, char *argv[]) {
         // Show usage
         printUsageInfo();
     }else{
-        maze->printMaze();
+        if(printMaze) {
+            maze->printMaze();
+            std::cout << std::endl;
+        }
         // Send robots through maze
         for(unsigned int i = 0; i < robots.size(); i++){
             threads.push_back(std::thread(&Robot::startRobot,robots.at(i)));
+            std::cout << "Robot " << robots.at(i)->getName() << " started its search!" << std::endl;
         }
     }
 

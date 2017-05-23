@@ -24,6 +24,10 @@ void Robot::startRobot() {
     }
 }
 
+std::string Robot::getName() {
+    return name;
+}
+
 void Robot::printEndInfo() {
     std::cout << "Robot " << name << " found an exit to the maze in " << steps << " steps!" << std::endl;
 }
