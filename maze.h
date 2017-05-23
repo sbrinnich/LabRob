@@ -18,6 +18,8 @@ public:
     char getPosition(int posx, int posy);
     int isCrossing(int posx, int posy);
     int isDeadEnd(int posx, int posy);
+    void printMaze();
+
 
 };
 

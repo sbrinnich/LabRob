@@ -12,69 +12,85 @@ void Maze::readFromFile(std::string filename) {
     ///open file
     file.open(filename, std::ios::out);
     char c;
-    int x = 0, y = 0;
+    unsigned int x = 0;
+    unsigned int y = 0;
+    int firstline = 1;
 
+    ///std::cout << "testy 1" << std::endl;
     ///go through file and read each character to put the maze into the vector
     while (!file.eof()){
+        ///std::cout << "testy 2" << std::endl;
         file.get(c);
         if(c != '\n')
         {
-            lab[x][y] = 'c';
+            if(firstline){
+                lab.push_back(std::vector<char>());
+            }
+            lab[x].push_back(c);
+            ///std::cout << lab.at(x).at(y) << std::endl;
             x++;
+
         }
         ///if character is newline, go to next line in vector and reset x-axis
         else{
+            firstline = 0;
             x = 0;
             y ++;
         }
     }
+    ///std::cout << "testy 3" << std::endl;
+    file.close();
+
+    defineStartAndGoal();
 }
 
 void Maze::defineStartAndGoal() {
+    unsigned int x = lab.size();
+    unsigned int y = 0;
+    y = lab[y].size();
     bool check = false;
     bool check_finish = false;
-    for (unsigned int i = 0; i < lab.size(); ++i) {
-        if(!check && lab[i][0] == ' '){
-            lab[i][0] = 's';
+    for (unsigned int i = 0; i < x; ++i) {
+        if(!check && lab.at(i).at(0) == ' '){
+            lab.at(i).at(0) = 's';
             check = true;
-        }else if(check && lab[i][0] == ' '){
-            lab[i][0] = 'g';
+        }else if(check && lab.at(i).at(0) == ' '){
+            lab.at(i).at(0) = 'g';
             check_finish = true;
         }
     }
-    if(check_finish){
-        for (unsigned int i = 0; i < lab[lab.size()].size(); ++i) {
-            if(!check && lab[lab.size()][i] == ' '){
-                lab[lab.size()][i] = 's';
+    if(!check_finish){
+        for (unsigned int i = 0; i < y; ++i) {
+            if(!check && lab.at(x-1).at(i) == ' '){
+                lab.at(x-1).at(i) = 's';
                 check = true;
-            }else if(check && lab[lab.size()][i] == ' '){
-                lab[lab.size()][i] = 'g';
+            }else if(check && lab.at(x-1).at(i) == ' '){
+                lab.at(x-1).at(i) = 'g';
                 check_finish = true;
             }
         }
     }
-    if(check_finish){
-        for (unsigned int i = 0; i < lab.size(); ++i) {
-            if(!check && lab[i][lab.size()] == ' '){
-                lab[i][lab.size()] = 's';
+    if(!check_finish){
+        for (unsigned int i = 0; i < x; ++i) {
+            if(!check && lab.at(i).at(y-1) == ' '){
+                lab.at(i).at(y-1) = 's';
                 check = true;
-            }else if(check && lab[i][lab.size()] == ' '){
-                lab[i][lab.size()] = 'g';
+            }else if(check && lab.at(i).at(y-1) == ' '){
+                lab.at(i).at(y-1) = 'g';
                 check_finish = true;
             }
         }
     }
-    if(check_finish){
-        for (unsigned int i = 0; i < lab[0].size(); ++i) {
-            if(!check && lab[0][i] == ' '){
-                lab[0][i] = 's';
+    if(!check_finish){
+        for (unsigned int i = 0; i < y; ++i) {
+            if(!check && lab.at(0).at(i) == ' '){
+                lab.at(0).at(i) = 's';
                 check = true;
-            }else if(check && lab[0][i] == ' '){
-                lab[0][i] = 'g';
+            }else if(check && lab.at(0).at(i) == ' '){
+                lab.at(0).at(i) = 'g';
             }
         }
     }
-
 }
 
 char Maze::getPosition(int posx, int posy) {
@@ -87,4 +103,14 @@ int Maze::isCrossing(int posx, int posy) {
 
 int Maze::isDeadEnd(int posx, int posy) {
     return -1;
+}
+
+void Maze::printMaze() {
+    for (unsigned int y = 0; y < lab.size(); ++y) {
+        for (unsigned int x = 0; x < lab[0].size(); ++x) {
+            std::cout << lab.at(x).at(y);
+        }
+        std::cout << std::endl;
+
+    }
 }

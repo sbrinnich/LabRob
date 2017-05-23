@@ -57,6 +57,7 @@ int main(int argc, char *argv[]) {
         // Show usage
         printUsageInfo();
     }else{
+        maze->printMaze();
         // Send robots through maze
     }
 
