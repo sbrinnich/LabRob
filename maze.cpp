@@ -95,16 +95,16 @@ char Maze::getPosition(coordinates coords) {
 
 bool Maze::isCrossing(coordinates coords) {
     int count_directions = 0;
-    if(lab[coords.posx +1][coords.posy] == ' '){
+    if(lab[coords.posx + 1][coords.posy] == ' '){
         count_directions ++;
     }
     if(lab[coords.posx][coords.posy + 1] == ' '){
         count_directions ++;
     }
-    if(lab[coords.posx --][coords.posy] == ' '){
+    if(lab[coords.posx - 1][coords.posy] == ' '){
         count_directions ++;
     }
-    if(lab[coords.posx][coords.posy --] == ' '){
+    if(lab[coords.posx][coords.posy - 1] == ' '){
         count_directions ++;
     }
     if(count_directions > 2){
@@ -122,10 +122,10 @@ bool Maze::isDeadEnd(coordinates coords) {
     if(lab[coords.posx][coords.posy + 1] != ' '){
         count_directions ++;
     }
-    if(lab[coords.posx --][coords.posy] != ' '){
+    if(lab[coords.posx -1][coords.posy] != ' '){
         count_directions ++;
     }
-    if(lab[coords.posx][coords.posy --] != ' '){
+    if(lab[coords.posx][coords.posy -1] != ' '){
         count_directions ++;
     }
     if(count_directions == 1){
@@ -134,6 +134,7 @@ bool Maze::isDeadEnd(coordinates coords) {
         return false;
     }
 }
+
 void Maze::printMaze() {
     for (unsigned int y = 0; y < lab.size(); ++y) {
         for (unsigned int x = 0; x < lab[0].size(); ++x) {
