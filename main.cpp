@@ -64,6 +64,11 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    // If no robot was passed as param, choose t1 as default
+    if(robots.size() <= 0){
+        robots.push_back(new LeftHand(maze));
+    }
+
     if(onlyshowusage){
         // Show usage
         printUsageInfo();
