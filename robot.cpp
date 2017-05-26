@@ -18,9 +18,13 @@ Robot::~Robot(){}
 
 void Robot::startRobot() {
     while(!finished){
-        doStep();
-        steps++;
-        checkFinished();
+        if(!unsolvable){
+            unsolvable = doStep();
+            steps++;
+            checkFinished();
+        }else{
+            break;
+        }
     }
 }
 
@@ -29,7 +33,11 @@ std::string Robot::getName() {
 }
 
 void Robot::printEndInfo() {
-    std::cout << "Robot " << name << " found an exit to the maze in " << steps << " steps!" << std::endl;
+    if(!unsolvable){
+        std::cout << "Robot " << name << " found an exit to the maze in " << steps << " steps!" << std::endl;
+    }else{
+        std::cout << std::endl << "Robot " << name << " can't solve the labyrinth!" << std::endl << std::endl;
+    }
 }
 
 void Robot::checkFinished() {
@@ -127,5 +135,7 @@ coordinates Robot::calculateNextPos(int move_to) {
 }
 
 void Robot::printMaze() {
-    maze->printMaze();
+    if(!unsolvable){
+        maze->printMaze();
+    }
 }

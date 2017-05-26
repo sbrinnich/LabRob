@@ -12,13 +12,14 @@
 class fill_deadend : public Robot {
 private:
     int startDir;
+    coordinates lastCoords;
 
 public:
     fill_deadend(Maze *maze);
     ~fill_deadend();
 
 protected:
-    void doStep();
+    bool doStep();
 
 };
 

@@ -82,8 +82,8 @@ int main(int argc, char *argv[]) {
         }
         // Send robots through maze
         for(unsigned int i = 0; i < robots.size(); i++){
-            threads.push_back(std::thread(&Robot::startRobot,robots.at(i)));
             std::cout << "Robot " << robots.at(i)->getName() << " started its search!" << std::endl;
+            threads.push_back(std::thread(&Robot::startRobot,robots.at(i)));
         }
     }
 

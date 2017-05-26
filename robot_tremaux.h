@@ -11,10 +11,11 @@ public:
     ~Tremaux();
 
 protected:
-    void doStep();
+    bool doStep();
 
 private:
     std::vector< std::vector<int> > markings;
+    coordinates lastCoords;
     int getMinMarkingsDir();
     bool isVisited();
 };
