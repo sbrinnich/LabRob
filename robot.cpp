@@ -2,7 +2,7 @@
 
 #include "robot.h"
 
-Robot::Robot(std::string name, Maze* maze) : name(name), steps(0), finished(0), maze(maze), coords(maze->getStart()) {
+Robot::Robot(std::string name, Maze* maze) : steps(0), name(name), finished(0), maze(maze), coords(maze->getStart()) {
     if(coords.posy == 0){
         dir = SOUTH;
     }else if(coords.posx == 0){
@@ -124,4 +124,8 @@ coordinates Robot::calculateNextPos(int move_to) {
             break;
     }
     return c;
+}
+
+void Robot::printMaze() {
+    maze->printMaze();
 }

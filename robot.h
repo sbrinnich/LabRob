@@ -9,10 +9,11 @@
 class Robot {
 
 private:
-    std::string name;
     int steps;
-    int finished;
     void checkFinished();
+    std::string name;
+    int finished;
+
 
 protected:
     Maze* maze;
@@ -25,6 +26,7 @@ protected:
     void turn(int turn_dir);
 
 public:
+    void printMaze();
     void startRobot();
     void printEndInfo();
     virtual ~Robot();

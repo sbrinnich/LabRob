@@ -15,9 +15,9 @@ protected:
 
 
 private:
+    int** map;
     int height;
     int width;
-    int** map;
     static const int STOP = 2, BACK = 1;
 };
 
