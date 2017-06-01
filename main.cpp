@@ -18,6 +18,7 @@ void printUsageInfo(){
     std::cout << "-t1   send a Left Hand Robot through the maze" << std::endl;
     std::cout << "-t2   send a Tremaux Robot through the maze" << std::endl;
     std::cout << "-t3   send a Gaston Tarry Robot through the maze" << std::endl;
+    std::cout << "-t4   send a Fill Deadend Robot through the maze" << std::endl;
 }
 
 int main(int argc, char *argv[]) {
