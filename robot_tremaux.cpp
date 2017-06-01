@@ -14,7 +14,9 @@ Tremaux::Tremaux(Maze *maze) : Robot("Tremaux", maze){
     markings.at(coords.posx).at(coords.posy) = 2;
 }
 
-Tremaux::~Tremaux() {}
+Tremaux::~Tremaux() {
+    delete maze;
+}
 
 bool Tremaux::doStep() {
     if (coords.posx == lastCoords.posx && coords.posy == lastCoords.posy) {
