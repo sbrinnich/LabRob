@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
     // Clean up
     for(unsigned int i = 0; i < robots.size(); i++){
         delete robots.at(i);
-        robots.erase(robots.begin()+i);
+        //robots.erase(robots.begin()+i);
     }
     delete maze;
     return 0;

@@ -131,16 +131,16 @@ bool Maze::isCrossing(coordinates coords) {
 
 bool Maze::isDeadEnd(coordinates coords) {
     int count_directions = 0;
-    if(lab[coords.posx +1][coords.posy] == ' ' || lab[coords.posx +1][coords.posy] == '.'){
+    if((unsigned int) coords.posx+1 < lab.size() && (lab.at(coords.posx +1).at(coords.posy) == ' ' || lab.at(coords.posx +1).at(coords.posy) == '.')){
         count_directions ++;
     }
-    if(lab[coords.posx][coords.posy + 1] == ' ' || lab[coords.posx][coords.posy + 1] == '.'){
+    if((unsigned int) coords.posy+1 < lab.at(0).size() && (lab.at(coords.posx).at(coords.posy + 1) == ' ' || lab.at(coords.posx).at(coords.posy + 1) == '.')){
         count_directions ++;
     }
-    if(lab[coords.posx -1][coords.posy] == ' ' || lab[coords.posx -1][coords.posy] == '.'){
+    if(coords.posx-1 >= 0 && (lab.at(coords.posx -1).at(coords.posy) == ' ' || lab.at(coords.posx -1).at(coords.posy) == '.')){
         count_directions ++;
     }
-    if(lab[coords.posx][coords.posy -1] == ' ' || lab[coords.posx][coords.posy -1] == '.'){
+    if(coords.posy-1 >= 0 && (lab.at(coords.posx).at(coords.posy -1) == ' ' || lab.at(coords.posx).at(coords.posy -1) == '.')){
         count_directions ++;
     }
     if(count_directions == 1){
