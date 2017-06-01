@@ -14,61 +14,67 @@ Tremaux::Tremaux(Maze *maze) : Robot("Tremaux", maze){
 
 Tremaux::~Tremaux() {}
 
-void Tremaux::doStep() {
-    if(maze->isCrossing(coords)){
-        coordinates back = calculateNextPos(BACKWARDS);
-        if(!isVisited() || markings.at(back.posx).at(back.posy) >= 2) {
-            int minmarkingsdir = getMinMarkingsDir();
-            if (minmarkingsdir == -1) {
+bool Tremaux::doStep() {
+    if (coords.posx == lastCoords.posx && coords.posy == lastCoords.posy) {
+        return true;
+    } else {
+        lastCoords = coords;
+        if (maze->isCrossing(coords)) {
+            coordinates back = calculateNextPos(BACKWARDS);
+            if (!isVisited() || markings.at(back.posx).at(back.posy) >= 2) {
+                int minmarkingsdir = getMinMarkingsDir();
+                if (minmarkingsdir == -1) {
+                    // Go back
+                    turn(LEFT);
+                    turn(LEFT);
+                    coords = calculateNextPos(FORWARD);
+                } else {
+                    // Direction without 2 markings found, go there
+                    switch (minmarkingsdir) {
+                        case LEFT:
+                            turn(LEFT);
+                            break;
+                        case RIGHT:
+                            turn(RIGHT);
+                            break;
+                    }
+                    coords = calculateNextPos(FORWARD);
+                }
+            } else {
                 // Go back
                 turn(LEFT);
                 turn(LEFT);
                 coords = calculateNextPos(FORWARD);
+            }
+        } else {
+            coordinates forward = calculateNextPos(FORWARD);
+            coordinates right = calculateNextPos(RIGHT);
+            coordinates left = calculateNextPos(LEFT);
+            if (maze->getPosition(right) == ' ') {
+                // Go right if possible
+                turn(RIGHT);
+                coords = right;
+            } else if (maze->getPosition(left) == ' ') {
+                // Go left if possible
+                turn(LEFT);
+                coords = left;
+            } else if (maze->getPosition(forward) == ' ') {
+                // Go forward if possible
+                coords = forward;
             } else {
-                // Direction without 2 markings found, go there
-                switch (minmarkingsdir) {
-                    case LEFT:
-                        turn(LEFT);
-                        break;
-                    case RIGHT:
-                        turn(RIGHT);
-                        break;
-                }
+                // Go back
+                turn(LEFT);
+                turn(LEFT);
                 coords = calculateNextPos(FORWARD);
             }
-        }else{
-            // Go back
-            turn(LEFT);
-            turn(LEFT);
-            coords = calculateNextPos(FORWARD);
         }
-    }else{
-        coordinates forward = calculateNextPos(FORWARD);
-        coordinates right = calculateNextPos(RIGHT);
-        coordinates left = calculateNextPos(LEFT);
-        if(maze->getPosition(right) == ' '){
-            // Go right if possible
-            turn(RIGHT);
-            coords = right;
-        }else if(maze->getPosition(left) == ' '){
-            // Go left if possible
-            turn(LEFT);
-            coords = left;
-        }else if(maze->getPosition(forward) == ' '){
-            // Go forward if possible
-            coords = forward;
-        }else {
-            // Go back
-            turn(LEFT);
-            turn(LEFT);
-            coords = calculateNextPos(FORWARD);
-        }
-    }
 
-    markings.at(coords.posx).at(coords.posy)++;
-
-    if(maze->isDeadEnd(coords)){
         markings.at(coords.posx).at(coords.posy)++;
+
+        if (maze->isDeadEnd(coords)) {
+            markings.at(coords.posx).at(coords.posy)++;
+        }
+        return false;
     }
 }
 

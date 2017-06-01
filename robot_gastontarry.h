@@ -11,13 +11,14 @@ public:
     ~GastonTarry();
 
 protected:
-    void doStep();
+    bool doStep();
 
 
 private:
+    int** map;
     int height;
     int width;
-    int** map;
+    coordinates lastCoords;
     static const int STOP = 2, BACK = 1;
 };
 

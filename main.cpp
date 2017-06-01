@@ -8,6 +8,7 @@
 #include "robot_lefthand.h"
 #include "robot_tremaux.h"
 #include "robot_gastontarry.h"
+#include "robot_fill_deadend.h"
 
 void printUsageInfo(){
     std::cout << "Usage: labrob [filename_for_maze] [optional_parameters]" << std::endl << std::endl;
@@ -52,6 +53,8 @@ int main(int argc, char *argv[]) {
             robots.push_back(new Tremaux(maze));
         }else if(strcmp(argv[i], "-t3") == 0) {
             robots.push_back(new GastonTarry(maze));
+        }else if(strcmp(argv[i], "-t4") == 0){
+            robots.push_back(new fill_deadend(maze));
         }else if(strcmp(argv[i], "-h") == 0) {
             onlyshowusage = true;
         }else if(strcmp(argv[i], "-p") == 0) {
@@ -79,14 +82,15 @@ int main(int argc, char *argv[]) {
         }
         // Send robots through maze
         for(unsigned int i = 0; i < robots.size(); i++){
-            threads.push_back(std::thread(&Robot::startRobot,robots.at(i)));
             std::cout << "Robot " << robots.at(i)->getName() << " started its search!" << std::endl;
+            threads.push_back(std::thread(&Robot::startRobot,robots.at(i)));
         }
     }
 
     // Wait for thread completion
     for(unsigned int i = 0; i < robots.size(); i++){
         threads.at(i).join();
+        robots.at(i)->printMaze();
         robots.at(i)->printEndInfo();
     }
 

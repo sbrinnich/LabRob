@@ -9,10 +9,12 @@
 class Robot {
 
 private:
-    std::string name;
     int steps;
-    int finished;
     void checkFinished();
+    std::string name;
+    int finished;
+    bool unsolvable = false;
+
 
 protected:
     Maze* maze;
@@ -20,11 +22,12 @@ protected:
     int dir;
     coordinates coords;
     static const int NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3, LEFT = 4, RIGHT = 5, FORWARD = 6, BACKWARDS = 7;
-    virtual void doStep()=0;
+    virtual bool doStep()=0;
     coordinates calculateNextPos(int move_to);
     void turn(int turn_dir);
 
 public:
+    void printMaze();
     void startRobot();
     void printEndInfo();
     virtual ~Robot();

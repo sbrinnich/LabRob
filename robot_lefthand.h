@@ -11,9 +11,10 @@ public:
     ~LeftHand();
 
 protected:
-    void doStep();
+    bool doStep();
 
 private:
+    coordinates lastCoords;
 };
 
 #endif //U5_LABROB_ROBOT_LEFTHAND_H
