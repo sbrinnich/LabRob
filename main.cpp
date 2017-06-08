@@ -91,6 +91,10 @@ int main(int argc, char *argv[]) {
     // Wait for thread completion
     for(unsigned int i = 0; i < robots.size(); i++){
         threads.at(i).join();
+    }
+
+    // Print mazes
+    for(unsigned int i = 0; i < robots.size(); i++){
         robots.at(i)->printMaze();
         robots.at(i)->printEndInfo();
     }
@@ -98,7 +102,6 @@ int main(int argc, char *argv[]) {
     // Clean up
     for(unsigned int i = 0; i < robots.size(); i++){
         delete robots.at(i);
-        //robots.erase(robots.begin()+i);
     }
     delete maze;
     return 0;
