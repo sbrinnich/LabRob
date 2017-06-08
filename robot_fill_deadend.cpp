@@ -28,15 +28,18 @@ bool fill_deadend::doStep() {
                 maze->setMaze(coords, '.');
                 turn(RIGHT);
                 coords = right;
+                maze->setMaze(coords, '.');
                 return false;
             } else if (maze->getPosition(forward) == ' ') {
                 maze->setMaze(coords, '.');
                 coords = forward;
+                maze->setMaze(coords, '.');
                 return false;
             } else if (maze->getPosition(left) == ' ') {
                 maze->setMaze(coords, '.');
                 turn(LEFT);
                 coords = left;
+                maze->setMaze(coords, '.');
                 return false;
             }
         }
@@ -44,16 +47,19 @@ bool fill_deadend::doStep() {
             maze->setMaze(coords, '.');
             turn(RIGHT);
             coords = right;
+            maze->setMaze(coords, '.');
             return false;
         } else if ((maze->getPosition(forward) == ' ' || maze->getPosition(forward) == '.') &&
                    !maze->isDeadEnd(coords)) {
             maze->setMaze(coords, '.');
             coords = forward;
+            maze->setMaze(coords, '.');
             return false;
         } else if ((maze->getPosition(left) == ' ' || maze->getPosition(left) == '.') && !maze->isDeadEnd(coords)) {
             maze->setMaze(coords, '.');
             turn(LEFT);
             coords = left;
+            maze->setMaze(coords, '.');
             return false;
         }
         if (maze->isDeadEnd(coords)) {
@@ -63,6 +69,7 @@ bool fill_deadend::doStep() {
                     forward = calculateNextPos(FORWARD);
                 }
                 coords = forward;
+                maze->setMaze(coords, '.');
                 return false;
             } else {
                 maze->setMaze(coords, 'x');
@@ -74,6 +81,7 @@ bool fill_deadend::doStep() {
                     backwards = calculateNextPos(BACKWARDS);
                 }
                 coords = backwards;
+                maze->setMaze(coords, '.');
             }
         }
     }

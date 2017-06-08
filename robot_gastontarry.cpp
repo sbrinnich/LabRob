@@ -30,8 +30,6 @@ GastonTarry::~GastonTarry() {
 }
 
 bool GastonTarry::doStep() {
-    //std::cout << "Position x: " << coords.posx << " y: " << coords.posy << std::endl;
-    //std::cout << "Last Position x: " << lastCoords.posx << " y: " << lastCoords.posy << std::endl;
     if (coords.posx == lastCoords.posx && coords.posy == lastCoords.posy) {
         return true;
     } else {
@@ -92,6 +90,8 @@ bool GastonTarry::doStep() {
                 coords = calculateNextPos(FORWARD);
             }
         }
+
+        maze->setMaze(coords, '.');
         return false;
     }
 }

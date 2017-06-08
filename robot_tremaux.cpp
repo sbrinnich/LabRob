@@ -23,6 +23,7 @@ bool Tremaux::doStep() {
         return true;
     } else {
         lastCoords = coords;
+        maze->setMaze(coords, '.');
         if (maze->isCrossing(coords)) {
             coordinates back = calculateNextPos(BACKWARDS);
             if (!isVisited() || markings.at(back.posx).at(back.posy) >= 2) {

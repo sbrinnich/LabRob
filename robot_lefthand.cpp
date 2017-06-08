@@ -16,6 +16,7 @@ bool LeftHand::doStep() {
         return true;
     } else {
         lastCoords = coords;
+        maze->setMaze(coords, '.');
         // Go left if possible
         coordinates c = calculateNextPos(LEFT);
         if (maze->getPosition(c) == ' ' || maze->getPosition(c) == '.') {
